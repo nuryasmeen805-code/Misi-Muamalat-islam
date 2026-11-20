@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Misi Muamalat Islam</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9f5ee;--ink:#1d2b24;--green:#1E8E5A;--orange:#F28C28;--yellow:#FFC93C;--cream:#FFF8E7}
+@media(prefers-color-scheme:dark){:root{--bg:#10201a;--ink:#eef6f1}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;display:flex;justify-content:center;padding:10px}
+.stage{width:100%;max-width:980px;aspect-ratio:16/9;min-height:560px;position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(#8fd3f4,#cdeefb 55%,#bfe3b4 55%,#7fc48a);box-shadow:0 8px 24px #0003;color:#1d2b24}
+@media(min-width:760px){.stage{min-height:0}}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;padding:14px 18px;overflow:auto;animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+h1,h2{margin:0;font-weight:800}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:34px}
+.bar{height:8px;background:#fff9;border-radius:8px;flex:1;max-width:220px;overflow:hidden}.bar i{display:block;height:100%;background:var(--orange);transition:width .4s}
+.body{flex:1;display:flex;align-items:center;justify-content:center;gap:14px;min-height:0;padding:6px 0}
+.col{flex-direction:column;align-items:stretch;justify-content:center}
+.card{background:var(--cream);border-radius:18px;padding:14px 18px;box-shadow:0 4px 0 #0002;width:100%}
+.btn{border:0;border-radius:14px;background:var(--orange);color:#fff;font:800 14px Nunito,sans-serif;padding:10px 16px;cursor:pointer;box-shadow:0 4px 0 #b9650f;min-height:44px}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b9650f}.btn.g{background:var(--green);box-shadow:0 4px 0 #136640}.btn.r{background:#d9534f;box-shadow:0 4px 0 #9c2f2b}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.nav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:6px}
+.pic{font-size:64px;line-height:1;width:96px;height:96px;object-fit:contain;display:flex;align-items:center;justify-content:center;animation:bob 2.4s ease-in-out infinite;flex:none}
+@keyframes bob{50%{transform:translateY(-7px)}}
+.title{text-align:center;color:#0b4d31;font-size:clamp(22px,4.4vw,38px);text-shadow:0 2px 0 #fff8;margin-top:4px}
+.slogan{text-align:center;font-size:14px;font-weight:700;color:#0b4d31;margin:2px 0}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;max-width:560px}
+.stall{border:0;border-radius:18px;color:#fff;font:800 clamp(13px,2.2vw,17px) Nunito,sans-serif;padding:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 6px 0 #0003;transition:transform .15s;min-height:84px}
+.stall:hover{transform:translateY(-4px) rotate(-1deg)}.stall span{font-size:34px}
+@media(max-width:560px){.menu{grid-template-columns:1fr}.pic{width:56px;height:56px;font-size:38px}}
+.ayat{font-family:'Amiri Quran','Scheherazade New',serif;font-size:clamp(26px,5vw,44px);direction:rtl;text-align:center;color:#0b4d31;line-height:1.8;border:3px double #c9a227;border-radius:16px;padding:6px 12px;background:#fffdf3}
+.sm{font-size:clamp(13px,2vw,16px);margin:6px 0 0}
+.flip{perspective:600px;height:100px;cursor:pointer}.flip>div{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}.flip.f>div{transform:rotateY(180deg)}
+.flip b,.flip p{position:absolute;inset:0;margin:0;backface-visibility:hidden;border-radius:14px;padding:8px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px}
+.flip b{background:var(--green);color:#fff;font-size:15px}.flip p{background:#fff;transform:rotateY(180deg);font-weight:600}
+.grid5{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;width:100%}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:3px solid #fff;border-radius:12px;padding:9px 12px;margin-top:7px;font:700 clamp(13px,2vw,16px) Nunito,sans-serif;cursor:pointer;color:#1d2b24}
+.opt.sel{border-color:var(--orange);background:#fff1dc}.opt.ok,.ok{border-color:var(--green)!important;background:#dcf5e6!important}.opt.no,.no{border-color:#d9534f!important;background:#fde3e2!important}
+.fb{min-height:38px;font-size:14px;font-weight:700;margin-top:6px}
+.stars{font-size:28px;letter-spacing:4px;color:#d99a00}
+.row{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:6px;align-items:stretch}
+.term{background:var(--green);color:#fff;border-radius:10px;padding:8px;font-weight:800;font-size:13px;display:flex;align-items:center}
+.slot{background:#fff;border:3px dashed #aaa;border-radius:10px;padding:8px;font-size:13px;min-height:42px;cursor:pointer}
+.chip{display:inline-block;background:#fff;border:3px solid var(--orange);border-radius:10px;padding:6px 10px;margin:3px;font-size:13px;font-weight:700;cursor:grab}.chip.sel{background:#fff1dc;transform:scale(1.05)}
+input{width:100%;padding:11px;border-radius:12px;border:3px solid #fff;font:700 16px Nunito,sans-serif;margin-top:4px}
+.vid{width:100%;aspect-ratio:16/9;max-height:300px;border:0;border-radius:14px;background:#0b2a1e;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:5px;border-bottom:1px solid #0002;text-align:left;vertical-align:top}
+</style>
+</head>
+<body>
+<div class="stage" id="v"></div>
+<script>
+/* ===== TETAPAN (sunting di sini) ===== */
+const VIDEO_URL = "";   // Pautan embed YouTube atau fail .mp4 (contoh: "assets/video.mp4"). Kosong = mesej sementara.
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2msr9G_kXrRFs-lmGXcaH8Iz-QbZMvNiztfnuW3fiqwyhsGisfd6hxT-lUJEYYo0k/exec";  // URL Web App Google Apps Script (Fasa 5). Kosong = kuiz tidak boleh dihantar.
+/* ===================================== */
+const V=document.getElementById('v');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function fb(img,e){const s=document.createElement('span');s.className='pic';s.textContent=e;img.replaceWith(s)}
+const pic=(n,e)=>`<img class="pic" src="assets/${n}.png" alt="" onerror="fb(this,'${e}')">`;
+const view=h=>{V.innerHTML='<div class="screen">'+h+'</div>'};
+const hd=(t,p,l)=>`<div class="top"><h2>${t}</h2>${p!=null?`<div class="bar"><i style="width:${p}%"></i></div>`:''}<span>${l||''}</span></div>`;
+const nav=(b,n,nl)=>`<div class="nav"><button class="btn" onclick="${b}">◀ KEMBALI</button><button class="btn g" onclick="go('menu')">🏠 MENU UTAMA</button>${n?`<button class="btn" onclick="${n}">${nl||'SETERUSNYA'} ▶</button>`:'<span></span>'}</div>`;
+const stars=(n,t)=>'★'.repeat(n)+'☆'.repeat(t-n);
+function go(id){({splash,menu,objektif,akt,a1,a2,a3,kinfo})[id]()}
+
+/* ---- Skrin asas ---- */
+function splash(){view(`<div class="body col" style="align-items:center"><div class="pic" style="font-size:80px;width:120px;height:120px">🕌</div><h1 class="title">Misi Muamalat Islam</h1><p class="slogan">Bijak Bermuamalah, Berkat Kehidupan</p><p class="slogan">Pendidikan Islam Tingkatan 4</p><button class="btn g" style="font-size:20px;padding:14px 40px" onclick="menu()">▶ MULA</button></div>`)}
+function menu(){view(`<h1 class="title">Misi Muamalat Islam</h1><p class="slogan">Bijak Bermuamalah, Berkat Kehidupan</p><div class="body">${pic('guru','👨‍🏫')}<div class="menu">
+<button class="stall" style="background:var(--green)" onclick="objektif()"><span>🎯</span>OBJEKTIF PEMBELAJARAN</button>
+<button class="stall" style="background:var(--orange)" onclick="nota(0)"><span>📖</span>NOTA PEMBELAJARAN</button>
+<button class="stall" style="background:#d99a00" onclick="akt()"><span>🧩</span>AKTIVITI INTERAKTIF</button>
+<button class="stall" style="background:#2b8fc7" onclick="kinfo()"><span>🏆</span>KUIZ</button></div></div>`)}
+function objektif(){const O=[['1. Maksud','Menjelaskan maksud Muamalat Islam.'],['2. Hukum','Menyatakan hukum Muamalat Islam.'],['3. Dalil naqli','Membaca dan menjelaskan maksud dalil naqli.'],['4. Matlamat','Menghuraikan matlamat pensyariatan Muamalat Islam.'],['5. Contoh','Mengenal pasti contoh Muamalat Islam dalam kehidupan harian.']];
+view(hd('Objektif Pembelajaran',null,'Klik kad')+`<div class="body"><div class="grid5">${O.map(o=>`<div class="flip" onclick="this.classList.toggle('f')"><div><b>${o[0]}</b><p>${o[1]}</p></div></div>`).join('')}</div></div>`+nav("menu()",null))}
+
+/* ---- Nota ---- */
+const NT=['Maksud Muamalat Islam','Hukum Muamalat Islam','Dalil Naqli','Matlamat Pensyariatan','Video Pembelajaran'];
+const MT=['Menunjukkan keadilan Allah SWT dalam mengatur urusan kehidupan manusia.','Mengiktiraf pemilikan harta melalui akad yang sah.','Segala urusan dalam muamalat Islam bertepatan dengan matlamat syariat Islam.','Menjaga kepentingan penjual dan pembeli serta penyewa dan pemilik.','Mendapat keredaan Allah SWT kerana melakukan suruhannya dan meninggalkan larangannya dalam urusan harian.'];
+const MI=['⚖️','🔑','🕌','🤝','💚'];
+function nbody(i){
+ if(i==0)return `${pic('murid-lelaki','🧑‍🎓')}<div class="card"><p class="sm"><b>Maksud (buku teks):</b> Hukum syarak yang berkaitan dengan urusan kewangan seperti jual beli, sewaan, simpanan dan sebagainya.</p><p class="sm"><b>Mudah:</b> Muamalat Islam ialah urusan wang dan harta yang diatur oleh hukum syarak.</p><p class="sm"><b>Contoh:</b> Jual beli di kantin, menyewa basikal dan menyimpan wang.</p></div>`;
+ if(i==1)return `${pic('murid-perempuan','🧕')}<div class="card"><p class="sm"><b>Hukum Muamalat Islam:</b></p><div class="title" style="font-size:44px">HARUS</div><p class="sm"><b>Mudah:</b> Harus bermaksud boleh dilakukan.</p><p class="sm"><b>Contoh:</b> Membeli makanan di kantin sekolah.</p></div>`;
+ if(i==2)return `${pic('murid-perempuan','🧕')}<div class="card"><div class="ayat">وَأَحَلَّ ٱللَّهُ ٱلْبَيْعَ وَحَرَّمَ ٱلرِّبَوٰا۟</div><p class="sm"><b>Surah al-Baqarah, 2: ayat 275</b></p><p class="sm"><b>Maksud:</b> Padahal Allah telah menghalalkan berjual beli dan mengharamkan riba.</p><p class="sm"><b>Pengajaran:</b> Allah menghalalkan jual beli. Kita boleh berjual beli dan perlu menjauhi riba.</p></div>`;
+ if(i==3)return `<div class="card">${MT.map((t,k)=>`<p class="sm" style="margin:5px 0"><span style="font-size:22px">${MI[k]}</span> ${k+1}. ${t}</p>`).join('')}</div>`;
+ let v;if(!VIDEO_URL)v='<div class="vid">Video pembelajaran akan ditambah.<br>(Letakkan pautan dalam VIDEO_URL di bahagian atas kod.)</div>';
+ else if(/\.(mp4|webm)(\?|$)/i.test(VIDEO_URL))v=`<video class="vid" controls src="${esc(VIDEO_URL)}"></video>`;
+ else v=`<iframe class="vid" src="${esc(VIDEO_URL)}" allowfullscreen></iframe>`;
+ return `<div style="width:100%">${v}</div>`}
+function nota(i){view(hd('Nota '+(i+1)+': '+NT[i],(i+1)*20,(i+1)+' / 5')+`<div class="body">${nbody(i)}</div>`+nav(i?`nota(${i-1})`:'menu()',i<4?`nota(${i+1})`:'akt()',i<4?'SETERUSNYA':'AKTIVITI'))}
+
+/* ---- Aktiviti ---- */
+function akt(){view(hd('Aktiviti Interaktif')+`<div class="body"><div class="menu" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:none;width:100%">
+<button class="stall" style="background:var(--green)" onclick="a1()"><span>🔗</span>1. Kenali Muamalat</button>
+<button class="stall" style="background:var(--orange)" onclick="a2()"><span>🏪</span>2. Muamalat di Sekeliling Kita</button>
+<button class="stall" style="background:#2b8fc7" onclick="a3()"><span>✅</span>3. Betul atau Salah?</button></div></div>`+nav("menu()",null))}
+/* Aktiviti 1 */
+const P=[['Muamalat Islam','Hukum syarak yang berkaitan dengan urusan kewangan'],['Harus','Boleh dilakukan'],['Dalil naqli','Allah menghalalkan jual beli dan mengharamkan riba'],['Contoh muamalat','Menyewa kereta'],['Matlamat pensyariatan','Mendapat keredaan Allah SWT']];
+let A1;
+function a1(){A1={sel:null,pl:[null,null,null,null,null],done:false,ord:shuffle([0,1,2,3,4])};r1()}
+function r1(m){const used=A1.pl,bank=A1.ord.filter(i=>!used.includes(i));
+ view(hd('Aktiviti 1: Kenali Muamalat',null,'Seret atau klik')+`<div class="body col" style="justify-content:flex-start"><p class="sm" style="margin:0">Padankan istilah dengan maksud. Seret ke petak, atau klik maksud kemudian klik petak.</p>
+ ${P.map((p,i)=>{const u=A1.pl[i];const c=A1.done?(u===i?'ok':'no'):'';return `<div class="row"><div class="term">${p[0]}</div><div class="slot ${c}" ondragover="event.preventDefault()" ondrop="put(${i})" onclick="put(${i},1)">${u==null?'<i style="opacity:.5">Letakkan di sini</i>':P[u][1]}</div></div>`}).join('')}
+ <div>${bank.map(i=>`<span class="chip ${A1.sel===i?'sel':''}" draggable="true" ondragstart="A1.sel=${i}" onclick="selc(${i})">${P[i][1]}</span>`).join('')}</div><div class="fb">${m||''}</div></div>`+
+ `<div class="nav"><button class="btn" onclick="akt()">◀ KEMBALI</button><button class="btn g" onclick="menu()">🏠 MENU UTAMA</button>${A1.done?'<button class="btn" onclick="a1()">ULANG</button>':`<button class="btn" ${A1.pl.includes(null)?'disabled':''} onclick="chk1()">SEMAK</button>`}</div>`)}
+function selc(i){if(A1.done)return;A1.sel=A1.sel===i?null:i;r1()}
+function put(s,click){if(A1.done)return;if(A1.sel!=null){A1.pl[s]=A1.sel;A1.sel=null;r1()}else if(click&&A1.pl[s]!=null){A1.pl[s]=null;r1()}}
+function chk1(){A1.done=true;const n=A1.pl.filter((u,i)=>u===i).length;r1(`${n>=4?'🎉 Tahniah!':'Cuba lagi!'} Anda betul ${n} daripada 5. <span class="stars">${stars(n>=5?3:n>=3?2:1,3)}</span>`)}
+/* Aktiviti 2 */
+const S2=[['🍛','Kantin: Amin membeli nasi lemak dengan membayar RM3.',0,'Ada penjual, pembeli dan bayaran. Ini jual beli yang diharuskan.'],['✏️','Kedai alat tulis: Aisyah membeli pen dan buku.',0,'Barang ditukar dengan wang di kedai. Ini jual beli.'],['💻','Dalam talian: Hafiz membeli buku dalam talian dan membuat bayaran.',0,'Jual beli juga sah dilakukan dalam talian selagi ada penjual, pembeli dan bayaran.'],['🚲','Sewa basikal: Ain menyewa basikal sejam dengan bayaran tertentu.',1,'Basikal digunakan untuk tempoh tertentu dengan bayaran. Ini sewaan.'],['🏦','Simpanan: Farah menyimpan wang di institusi kewangan patuh syariah.',2,'Menyimpan wang ialah urusan kewangan yang disebut dalam takrif muamalat.']];
+const O2=['Jual beli','Sewaan','Simpanan','Riba'];let i2=0,s2=0,d2=false;
+function a2(){i2=0;s2=0;r2()}
+function r2(){d2=false;const s=S2[i2];view(hd('Aktiviti 2: Muamalat di Sekeliling Kita',(i2+1)*20,(i2+1)+' / 5 | Skor '+s2)+`<div class="body">${pic('situasi'+(i2+1),s[0])}<div class="card"><p class="sm" style="font-weight:800;font-size:clamp(14px,2.2vw,18px);margin:0">${s[1]}</p><p class="sm">Apakah jenis muamalat ini?</p>${O2.map((o,k)=>`<button class="opt" onclick="c2(${k},this)">${o}</button>`).join('')}<div class="fb" id="f2"></div></div></div><div class="nav"><button class="btn" onclick="akt()">◀ KEMBALI</button><button class="btn g" onclick="menu()">🏠 MENU UTAMA</button><button class="btn" id="n2" hidden onclick="n2()">SETERUSNYA ▶</button></div>`)}
+function c2(k,b){if(d2)return;d2=true;const s=S2[i2],ok=k===s[2];if(ok)s2++;b.classList.add(ok?'ok':'no');document.querySelectorAll('.opt')[s[2]].classList.add('ok');document.getElementById('f2').textContent=(ok?'✅ Betul! ':'❌ Belum tepat. ')+s[3];document.getElementById('n2').hidden=false}
+function n2(){if(i2<4){i2++;r2()}else view(hd('Aktiviti 2 Selesai')+`<div class="body col" style="align-items:center"><div class="stars">${stars(s2>=5?3:s2>=3?2:1,3)}</div><h2>Skor: ${s2} / 5</h2><button class="btn" onclick="a2()">ULANG</button></div>`+nav("akt()",null))}
+/* Aktiviti 3 */
+const B=[['Muamalat Islam berkaitan urusan kewangan seperti jual beli.',1,'Muamalat Islam berkaitan urusan kewangan seperti jual beli, sewaan dan simpanan.'],['Hukum muamalat Islam ialah harus.',1,'Hukum muamalat Islam ialah harus.'],['Allah menghalalkan jual beli.',1,'Allah menghalalkan jual beli.'],['Surah al-Baqarah ayat 275 menyatakan Allah mengharamkan riba.',1,'Ayat itu menyebut Allah menghalalkan jual beli dan mengharamkan riba.'],['Menyewa basikal ialah contoh muamalat.',1,'Sewaan termasuk dalam urusan kewangan muamalat.'],['Muamalat Islam tidak berkaitan dengan kehidupan harian.',0,'Muamalat meliputi urusan harian seperti jual beli dan sewaan.'],['Salah satu matlamat muamalat ialah mengiktiraf pemilikan harta melalui akad yang sah.',1,'Ini matlamat pensyariatan dalam buku teks.'],['Matlamat muamalat ialah mendapat keredaan manusia semata-mata.',0,'Matlamatnya ialah keredaan Allah SWT.'],['Menyimpan wang ialah salah satu contoh urusan kewangan dalam muamalat Islam.',1,'Simpanan disebut dalam takrif buku.'],['Hukum jual beli dalam muamalat Islam ialah haram.',0,'Hukum muamalat ialah harus, dan Allah menghalalkan jual beli.']];
+let i3=0,s3=0,d3=false;
+function a3(){i3=0;s3=0;r3()}
+function r3(){d3=false;view(hd('Aktiviti 3: Betul atau Salah?',(i3+1)*10,(i3+1)+' / 10 | Markah '+s3)+`<div class="body col"><div class="card"><p class="sm" style="font-weight:800;font-size:clamp(15px,2.4vw,20px);margin:0">${B[i3][0]}</p><div class="fb" id="f3"></div></div><div style="display:flex;gap:12px"><button class="btn g" style="flex:1" onclick="c3(1)">BETUL</button><button class="btn r" style="flex:1" onclick="c3(0)">SALAH</button></div></div><div class="nav"><button class="btn" onclick="akt()">◀ KEMBALI</button><button class="btn g" onclick="menu()">🏠 MENU UTAMA</button><button class="btn" id="n3" hidden onclick="n3()">SETERUSNYA ▶</button></div>`)}
+function c3(v){if(d3)return;d3=true;const ok=v===B[i3][1];if(ok)s3++;document.getElementById('f3').textContent=(ok?'✅ Betul! ':'❌ Salah. ')+B[i3][2];document.getElementById('n3').hidden=false}
+function n3(){if(i3<9){i3++;r3()}else{const t=s3>=9?3:s3>=6?2:1;view(hd('Aktiviti 3 Selesai')+`<div class="body col" style="align-items:center"><div class="stars">${stars(t,3)}</div><h2>Markah: ${s3} / 10</h2><button class="btn" onclick="a3()">ULANG</button></div>`+nav("akt()",null))}}
+
+/* ---- Kuiz (tiada kunci jawapan di sini; semakan dibuat oleh pelayan) ---- */
+const Q=[['Apakah maksud Muamalat Islam?',['Cara melakukan solat dengan sempurna','Peraturan berpuasa pada bulan Ramadan','Hukum syarak yang berkaitan dengan urusan kewangan','Adab bergaul dengan jiran']],
+['Antara berikut, yang manakah disebut dalam takrif Muamalat Islam di buku teks?',['Jual beli','Zakat fitrah','Sedekah jariah','Wakaf tanah']],
+['Apakah hukum Muamalat Islam?',['Wajib','Sunat','Makruh','Harus']],
+['Apakah maksud "harus"?',['Mesti dilakukan','Boleh dilakukan','Dilarang sama sekali','Sebaiknya ditinggalkan']],
+['Surah dan ayat manakah menjadi dalil naqli Muamalat Islam?',['Surah al-Fatihah, ayat 1','Surah al-Ikhlas, ayat 1','Surah an-Nas, ayat 1','Surah al-Baqarah, ayat 275']],
+['Menurut Surah al-Baqarah ayat 275, apakah yang diharamkan oleh Allah SWT?',['Jual beli','Riba','Sewaan','Simpanan']],
+['Manakah antara berikut ialah matlamat pensyariatan Muamalat Islam?',['Mendapat keuntungan sebanyak mungkin dalam setiap urusan','Memastikan semua orang mempunyai harta yang sama banyak','Mendapat keredaan Allah SWT','Menggalakkan pembelian secara berlebih-lebihan']],
+['Muamalat Islam menjaga kepentingan pihak manakah?',['Penjual dan pembeli serta penyewa dan pemilik','Penjual dan penyewa sahaja','Pembeli dan pemilik sahaja','Penjual dan pembeli sahaja']],
+['Amin membeli nasi lemak di kantin sekolah dengan membayar RM3. Apakah jenis urusan muamalat ini?',['Riba','Jual beli','Simpanan','Sewaan']],
+['Ain menyewa basikal selama sejam dengan bayaran tertentu. Apakah jenis urusan muamalat ini?',['Jual beli','Simpanan','Riba','Sewaan']]];
+let K={nama:'',kelas:'',ans:[],i:0,id:null};
+const newId=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);
+function kinfo(msg){view(hd('Kuiz Muamalat Islam')+`<div class="body">${pic('murid-lelaki','🧑‍🎓')}<div class="card"><p class="sm" style="margin:0;font-weight:800">Isi maklumat anda sebelum bermula.</p><p class="sm">Nama penuh</p><input id="nm" maxlength="80" autocomplete="off" value="${esc(K.nama)}"><p class="sm">Kelas</p><input id="kl" maxlength="20" autocomplete="off" value="${esc(K.kelas)}"><div class="fb" style="color:#b00020">${msg||''}</div><button class="btn g" onclick="mula()">MULA KUIZ</button></div></div>`+nav("menu()",null))}
+function mula(){const n=document.getElementById('nm').value.trim(),k=document.getElementById('kl').value.trim();if(!n||!k)return kinfo('Sila isi nama penuh dan kelas.');K={nama:n,kelas:k,ans:K.ans.length===Q.length&&K.id?K.ans:[],i:0,id:K.id||newId()};kq()}
+function kq(){const q=Q[K.i];view(hd('Soalan '+(K.i+1)+' / '+Q.length,(K.i+1)*10,K.nama)+`<div class="body"><div class="card"><p class="sm" style="font-weight:800;font-size:clamp(15px,2.4vw,20px);margin:0">${esc(q[0])}</p>${q[1].map((o,k)=>`<button class="opt ${K.ans[K.i]===k?'sel':''}" onclick="K.ans[K.i]=${k};kq()">${'ABCD'[k]}. ${esc(o)}</button>`).join('')}</div></div><div class="nav"><button class="btn g" onclick="menu()">🏠 MENU UTAMA</button><span><button class="btn" ${K.i?'':'disabled'} onclick="K.i--;kq()">◀ SEBELUMNYA</button> <button class="btn" onclick="${K.i<Q.length-1?'K.i++;kq()':'ksemak()'}">${K.i<Q.length-1?'SETERUSNYA ▶':'SEMAK JAWAPAN ▶'}</button></span></div>`)}
+function ksemak(msg){const un=Q.filter((q,i)=>K.ans[i]==null).length;view(hd('Semak Jawapan',100,K.nama+' ('+esc(K.kelas)+')')+`<div class="body col" style="justify-content:flex-start"><table>${Q.map((q,i)=>`<tr style="cursor:pointer" onclick="K.i=${i};kq()"><td><b>S${i+1}</b></td><td>${K.ans[i]==null?'<span style="color:#b00020">Belum dijawab</span>':'ABCD'[K.ans[i]]+'. '+esc(q[1][K.ans[i]])}</td></tr>`).join('')}</table><div class="fb" style="color:#b00020">${msg||(un?`Masih ada ${un} soalan belum dijawab. Klik baris untuk menjawab.`:'')}</div></div><div class="nav"><button class="btn" onclick="K.i=Q.length-1;kq()">◀ KEMBALI</button><button class="btn g" ${un?'disabled':''} onclick="hantar()">HANTAR JAWAPAN</button></div>`)}
+async function hantar(){
+ view('<div class="body col" style="align-items:center"><h2>Menghantar jawapan...</h2><p>Sila tunggu pengesahan pelayan.</p></div>');
+ if(!SCRIPT_URL)return ksemak('Pelayan belum disambung (SCRIPT_URL kosong). Keputusan tidak dapat dihantar atau dikira.');
+ try{const r=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({id:K.id,nama:K.nama,kelas:K.kelas,jawapan:K.ans.map(i=>'ABCD'[i])})});
+  const d=await r.json();if(!d||!d.ok)throw new Error(d&&d.error||'Pelayan menolak penghantaran.');hasil(d)}
+ catch(e){ksemak('Gagal menyimpan keputusan: '+esc(e.message)+'. Semak rangkaian dan tekan HANTAR JAWAPAN sekali lagi (tiada rekod berganda).')}}
+function hasil(d){const p=d.peratus,msg=p>=80?'Tahniah! Prestasi cemerlang!':p>=50?'Bagus! Teruskan usaha!':'Jangan putus asa. Ulang kaji dan cuba lagi!';
+ view(hd('Keputusan Kuiz',null,'')+`<div class="body col" style="justify-content:flex-start"><div class="card"><p class="sm" style="margin:0"><b>${esc(K.nama)}</b> | ${esc(K.kelas)}</p><p class="sm">Betul: <b>${d.betul}</b> | Salah: <b>${d.salah}</b> | Markah: <b>${d.markah}/10</b> | Pencapaian: <b>${p}%</b></p><div class="stars">${stars(p>=80?3:p>=50?2:1,3)}</div><p class="sm"><b>${msg}</b></p><p class="sm" style="color:#136640">✅ Keputusan berjaya disimpan oleh pelayan.</p></div>
+ <table>${d.butiran.map((b,i)=>`<tr class="${b.status==='BETUL'?'ok':'no'}"><td><b>S${i+1}</b></td><td>Pilihan anda: ${b.pilih} | Jawapan: ${b.betul} | <b>${b.status}</b><br>${esc(b.penerangan)}</td></tr>`).join('')}</table></div><div class="nav"><button class="btn g" onclick="K={nama:'',kelas:'',ans:[],i:0,id:null};menu()">🏠 MENU UTAMA</button></div>`)}
+splash();
+</script>
+</body>
+</html>
