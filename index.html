@@ -60,6 +60,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:5px;borde
 </head>
 <body>
 <button class="mt" id="mt" aria-label="Bunyi" onclick="SND=!SND;this.textContent=SND?'🔊':'🔇'">🔊</button>
+<button class="mt" id="mm" style="right:64px" aria-label="Muzik" onclick="toggleMusic()" hidden>🎵</button>
 <div class="stage" id="v"></div>
 <script>window.onerror=function(m,s,l){var v=document.getElementById('v');if(v){v.textContent='Ralat: '+m+' (baris '+l+')';v.style.padding='16px';v.style.background='#fff'}};</script>
 <script src="config.js"></script>
@@ -175,6 +176,20 @@ document.addEventListener('click',function(e){if(e.target.closest('.btn,.stall,.
 /* ---- Latar mengikut bahagian (fail assets/latar-*.png; jika tiada, gradien asal digunakan) ---- */
 [['splash','x'],['menu','latar-menu'],['objektif','latar-nota'],['nota','latar-nota'],['akt','latar-aktiviti'],['a1','latar-aktiviti'],['a2','latar-aktiviti'],['a3','latar-aktiviti'],['kinfo','latar-aktiviti']].forEach(function(x){const f=window[x[0]];window[x[0]]=function(){BG=x[1];return f.apply(this,arguments)}});
 const LATAR={};['latar-menu','latar-nota','latar-aktiviti'].forEach(n=>{const i=new Image();i.onload=()=>{LATAR[n]=1};i.src='assets/'+n+'.png'});
+/* ---- Muzik latar (fail assets/muzik.mp3; jika tiada, butang 🎵 disembunyikan) ---- */
+const MUZIK_URL=(window.CONFIG&&CONFIG.muzikUrl)||'assets/muzik.mp3';
+let MUS=true,QUIET=false,STARTED=false,BGMOK=false;
+const BGM=new Audio();BGM.loop=true;BGM.volume=.22;BGM.preload='auto';
+BGM.addEventListener('canplay',function(){BGMOK=true;document.getElementById('mm').hidden=false});
+BGM.addEventListener('error',function(){BGMOK=false;document.getElementById('mm').hidden=true});
+BGM.src=MUZIK_URL;
+function sync(){if(!BGMOK||!STARTED)return;if(MUS&&!QUIET){const q=BGM.play();if(q&&q.catch)q.catch(function(){})}else BGM.pause()}
+function quiet(q){QUIET=q;sync()}
+function toggleMusic(){MUS=!MUS;document.getElementById('mm').style.opacity=MUS?1:.45;sync()}
+document.addEventListener('click',function(){if(!STARTED){STARTED=true;sync()}},true);
+BGM.addEventListener('canplay',sync);
+[['kinfo',1],['kq',1],['ksemak',1],['hasil',1],['menu',0],['objektif',0],['akt',0],['a1',0],['a2',0],['a3',0]].forEach(function(x){const f=window[x[0]];window[x[0]]=function(){quiet(!!x[1]);return f.apply(this,arguments)}});
+(function(){const f=window.nota;window.nota=function(i){quiet(i===4);return f.apply(this,arguments)}})();
 splash();
 </script>
 </body>
